@@ -9,32 +9,15 @@ import stacks.config as config
 def sales_preprocessing(df, stream):
     print("Preprocessing started for {stream_name}".format(stream_name=stream))
     if stream=="liquor":
-        df["Net_Sales"]=df["Net Sales"]
-        df["Date"]=df["Month_Adjusted"]
-
+        df["Net_Sales"]=df["WAREHOUSE SALES"]
+        df["Date"] = pd.to_datetime(df["YEAR"].astype(str) + "-" + df["MONTH"].astype(str) + "-1")
     df_sales_sorted = df.sort_values(
         by="Date", ascending=True).reset_index(drop=True)
     # Rerun from Here to Change Dates
-    if stream == "vlt" or stream == "cannabis":
-        df_sales_sorted["Key"] = stream
-    elif stream == "slots":
-        
-        df_sales_sorted=df_sales_sorted[df_sales_sorted["Ownership"]!="HYBRID"]
-        df_sales_sorted["Ownership"] = np.where(df_sales_sorted["Ownership"] == "OWNED", "owned", df_sales_sorted["Ownership"])
-        df_sales_sorted["Ownership"] = np.where(df_sales_sorted["Ownership"] == "LEASED", "leased", df_sales_sorted["Ownership"])
-
-        df_sales_sorted["Key"] = df_sales_sorted["CasinoType"] + \
-            "_"+df_sales_sorted["Ownership"]
-    elif stream == "online":
-        df_sales_sorted["Key"] = df_sales_sorted["GameVertical"]
-    elif stream=="liquor":
-        df_sales_sorted["Key"] = stream +"_"+df_sales_sorted["Key"]
+    if stream=="liquor":
+        df_sales_sorted["Key"] = stream +"_"+df_sales_sorted["SUPPLIER"]+df_sales_sorted["ITEM TYPE"]
         print(df_sales_sorted)
         #df_sales_sorted["Net_Sales"]=df_sales_sorted["Net_Sales"].astype("float")
-
-    
-        
-
     df_sales_grouped = df_sales_sorted.groupby(by=["Date", "Key"])["Net_Sales"].sum().reset_index()
     
     df_sales_grouped["Date"] = pd.to_datetime(df_sales_grouped["Date"])
@@ -58,8 +41,9 @@ def sales_preprocessing(df, stream):
     # Generating valid keys
     valid_keys = []
     for key in list(df_sales_grouped["Key"].unique()):
-        if df_sales_grouped[df_sales_grouped["Key"] == key][["Net_Sales"]].index[-1].year > 2023:
-            if df_sales_grouped[df_sales_grouped["Key"] == key][["Net_Sales"]].shape[0]>config.forecast_horizon:
+        #Making sure there is enough history
+        if df_sales_grouped[df_sales_grouped["Key"] == key][["Net_Sales"]].index[-1].year > 2019:
+            if df_sales_grouped[df_sales_grouped["Key"] == key][["Net_Sales"]].shape[0]>=12:
 
                 print(df_sales_grouped[df_sales_grouped["Key"]
                                    == key][["Net_Sales"]].shape)

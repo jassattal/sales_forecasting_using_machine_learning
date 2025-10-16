@@ -1,9 +1,7 @@
 import pandas as pd
 import warnings
-warnings.filterwarnings("ignore")
-# SQL query for Liquor
-
-input_df=pd.read_csv("../inputs/input_liquor.xlsX")
+warnings.filterwarnings("ignore","openpyxl")
+input_df=pd.read_excel("inputs/input_liquor.xlsx")
 available_streams = ["liquor"]
 available_models = ["prophet", "random_forest", "catboost","linear_regression","xgboost"]
 
@@ -24,7 +22,7 @@ for model in available_models:
         models.append(model)
 
 # forecast_horizon
-forecast_horizon = input_df.loc[:, "forecast_horizon"].tail(1).values[0]
+forecast_horizon = int(input_df.loc[:, "forecast_horizon"].tail(1).values[0])
 # decription
 description = input_df.loc[:, "description"].tail(1).values[0]
 
