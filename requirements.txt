@@ -1,0 +1,13 @@
+catboost==1.2.8
+numpy==2.3.1
+pandas==2.3.0
+prophet==1.1.7
+pyodbc==5.2.0
+python_dateutil==2.9.0.post0
+quantile_forest==1.4.0
+Requests==2.32.4
+scikit_learn==1.7.0
+stats_can==2.9.4
+statsmodels==0.14.4
+xgboost==3.0.5
+
