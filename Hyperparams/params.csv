@@ -1,0 +1,13 @@
+stream,key,model,Params
+liquor,liquor_BEER,random_forest,"{'model': 'random_forest', 'params': {'n_estimators': 261, 'max_depth': 16, 'min_samples_split': 7, 'min_samples_leaf': 4}, 'cv_rmse': 53935239.37789999}"
+liquor,liquor_BEER,catboost,"{'model': 'catboost', 'params': {'iterations': 333, 'learning_rate': 0.06180770806033046, 'depth': 9}, 'cv_rmse': 53497665.47731021}"
+liquor,liquor_BEER,xgboost,"{'model': 'xgboost', 'params': {'n_estimators': 378, 'learning_rate': 0.25664034095620425, 'max_depth': 10, 'subsample': 0.9167508169212948, 'colsample_bytree': 0.806479701379975}, 'cv_rmse': 53529940.45457016}"
+liquor,liquor_KEGS,random_forest,"{'model': 'random_forest', 'params': {'n_estimators': 123, 'max_depth': 8, 'min_samples_split': 10, 'min_samples_leaf': 4}, 'cv_rmse': 34422.214360000005}"
+liquor,liquor_KEGS,catboost,"{'model': 'catboost', 'params': {'iterations': 450, 'learning_rate': 0.08869110201065085, 'depth': 7}, 'cv_rmse': 32813.61427331136}"
+liquor,liquor_KEGS,xgboost,"{'model': 'xgboost', 'params': {'n_estimators': 174, 'learning_rate': 0.2684452203790967, 'max_depth': 8, 'subsample': 0.5992580130786422, 'colsample_bytree': 0.6759695893548163}, 'cv_rmse': 47613.60094725576}"
+liquor,liquor_LIQUOR,random_forest,"{'model': 'random_forest', 'params': {'n_estimators': 127, 'max_depth': 13, 'min_samples_split': 2, 'min_samples_leaf': 4}, 'cv_rmse': 16395.59796666667}"
+liquor,liquor_LIQUOR,catboost,"{'model': 'catboost', 'params': {'iterations': 658, 'learning_rate': 0.280901687794746, 'depth': 8}, 'cv_rmse': 21181.40618749902}"
+liquor,liquor_LIQUOR,xgboost,"{'model': 'xgboost', 'params': {'n_estimators': 731, 'learning_rate': 0.2882020902004805, 'max_depth': 3, 'subsample': 0.8305469784412711, 'colsample_bytree': 0.9973947242048185}, 'cv_rmse': 27465.17324618151}"
+liquor,liquor_WINE,random_forest,"{'model': 'random_forest', 'params': {'n_estimators': 869, 'max_depth': 16, 'min_samples_split': 10, 'min_samples_leaf': 3}, 'cv_rmse': 320630.3531733333}"
+liquor,liquor_WINE,catboost,"{'model': 'catboost', 'params': {'iterations': 791, 'learning_rate': 0.010168388923796177, 'depth': 10}, 'cv_rmse': 293925.7049416296}"
+liquor,liquor_WINE,xgboost,"{'model': 'xgboost', 'params': {'n_estimators': 822, 'learning_rate': 0.2500365124972582, 'max_depth': 4, 'subsample': 0.7465412132392588, 'colsample_bytree': 0.7451652081502405}, 'cv_rmse': 297557.37552597636}"
