@@ -11,11 +11,13 @@ def sales_preprocessing(df, stream):
     if stream=="liquor":
         df["Net_Sales"]=df["WAREHOUSE SALES"]
         df["Date"] = pd.to_datetime(df["YEAR"].astype(str) + "-" + df["MONTH"].astype(str) + "-1")
+        forecasted_segments=['BEER','WINE','KEGS','LIQUOR']
+        df=df[df["ITEM TYPE"].isin(forecasted_segments)]
     df_sales_sorted = df.sort_values(
         by="Date", ascending=True).reset_index(drop=True)
     # Rerun from Here to Change Dates
     if stream=="liquor":
-        df_sales_sorted["Key"] = stream +"_"+df_sales_sorted["SUPPLIER"]+df_sales_sorted["ITEM TYPE"]
+        df_sales_sorted["Key"] = stream +"_"+df_sales_sorted["ITEM TYPE"]
         print(df_sales_sorted)
         #df_sales_sorted["Net_Sales"]=df_sales_sorted["Net_Sales"].astype("float")
     df_sales_grouped = df_sales_sorted.groupby(by=["Date", "Key"])["Net_Sales"].sum().reset_index()
